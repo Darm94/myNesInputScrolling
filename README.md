@@ -14,6 +14,4 @@ Only one direction is applied per frame to keep the motion simple.
 - X and Y scroll values in RAM are incremented or decremented.
 - These values are written to the PPU scroll registers ($2005) to move the background.
 
-## Repository description
-A minimal example in 6502 assembly for NES that demonstrates synchronized input reading and scroll control using the hardware registers directly.  
-Made for study purposes to show how to handle the v-blank and controller input at low level.
+
