@@ -69,11 +69,23 @@ WaitFrame:
     BEQ WaitFrame     ; wait until NMI sets FRAME
     LDA #$00
     STA FRAME         ; consume the frame signal
+```
 
 ##  Throttling
 
 Throttling defines **how many frames** must pass before another movement step occurs.  
 Each frame, the variable `THROTTLE` is **decreased by one** until it reaches zero — at that moment, a single movement step is executed, and the counter is reset to `THROTTLE_VALUE`.
+
+```asm
+LDA THROTTLE
+BEQ DoMove           ; if 0 → time to move
+DEC THROTTLE         ; otherwise, wait one more frame
+JMP no_move
+
+DoMove:
+    LDA THROTTLE_VALUE
+    STA THROTTLE     ; reset throttle timer
+```
 
 This mechanism allows you to slow down the scroll speed by waiting multiple frames between movements.
 
@@ -81,6 +93,16 @@ This mechanism allows you to slow down the scroll speed by waiting multiple fram
 
 SPEED determines how much X or Y changes each time a move is triggered.
 This controls the magnitude of each scroll step in pixels.
+
+```asm
+go_right:
+    LDA $01
+    CLC
+    ADC SPEED         ; add SPEED to X position
+    STA $01
+    JMP no_move
+
+```
 
 ### Combined Effect
 
