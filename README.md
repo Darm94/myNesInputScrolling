@@ -105,10 +105,19 @@ go_right:
 ```
 
 ### Combined Effect
+This new setting allow to set a base for the speed ( the NMI frame update speed) and to adjust it using only 2 Constant value (defined at the beggining of the code).Here the recap:
 
 | Variable | Function | Higher Value → |
 |-----------|-----------|----------------|
 | `FRAME` | Synchronizes logic with NMI | — |
 | `THROTTLE_VALUE` | Frames between movement steps | Slower motion |
 | `SPEED_VALUE` | Pixels moved per step | Faster motion |
+
+###  Conclusion
+
+This new version of the program is more flexible and efficient than the previous one.  
+By handling **controller input directly inside the main loop**, it decouples input reading from the NMI routine, improving responsiveness and making the overall structure cleaner and easier to maintain.  
+
+The introduction of **Frame Wait**, **Throttling**, and **Speed** control mechanisms allows fine-tuning of motion timing without altering the main logic.  
+Now the scroll speed can be adjusted simply by changing **two values** — `THROTTLE_VALUE` and `SPEED_VALUE` — giving full control over how fast or smooth the movement feels, while keeping perfect synchronization with the NES frame rate.
 
