@@ -52,7 +52,7 @@ The program performs these main tasks:
 |-----------|--------------|----------------|
 | `SPEED` / `SPEED_VALUE` | How many pixels to move per step. Higher = faster. | `#$01`, `#$02`, `#$04` |
 | `THROTTLE` / `THROTTLE_VALUE` | Number of frames to wait between moves. Higher = slower. | `#$00`, `#$03`, `#$05` |
-| `FRAME` | Frame flag set once per NMI (1 per video frame). Used for sync. | Auto-managed |
+| `FRAME` | Frame flag set once per NMI (1 per video frame).It's resetted to 0 in main loop. Used for sync. | Auto-managed |
 
 These variables can be changed directly in the source to control how much fast the screen scrolls.
 
