@@ -36,17 +36,17 @@ The program performs these main tasks:
 2. **Main Loop**
    - Waits for a new frame signal from the NMI (ensuring 60 Hz sync).
    - Reads controller input from `$4016` and stores button states in `$03`.
-   - Adjusts scroll position (X = `$01`, Y = `$02`) based on directional input.
-   - Uses configurable **speed** and **throttling** variables to define how fast or how often movement occurs.
+   - Uses configurable **speed** and **throttling** variables to define how fast or how often movement occurs, starting from NVM rythm.
+   - Adjusts scroll position (X = `$01`, Y = `$02`) based on the directional input just calculated.
 
 3. **NMI Routine**
-   - Executes once per frame.
+   - Executes once per frame (every frame set a variable to 01 to be checked in the the loop part,thats the method i founded to let the loop wait NMI rythm).
    - Updates the PPU scroll registers (`PPUSCRL`) to reflect the current X/Y position.
-   - Increments a simple color value each frame to make a subtle visual change (for debugging).
+   - Increments a simple color value each frame to make a visual change (tryed at lesson).
 
 ---
 
-## Adjustable Variables
+## Adjustable Speed Variables
 
 | Variable | Description | Example Value |
 |-----------|--------------|----------------|
@@ -54,7 +54,7 @@ The program performs these main tasks:
 | `THROTTLE` / `THROTTLE_VALUE` | Number of frames to wait between moves. Higher = slower. | `#$00`, `#$03`, `#$05` |
 | `FRAME` | Frame flag set once per NMI (1 per video frame). Used for sync. | Auto-managed |
 
-These variables can be changed directly in the source to control how the screen scrolls.
+These variables can be changed directly in the source to control how much fast the screen scrolls.
 
 ---
 
@@ -113,11 +113,11 @@ This new setting allow to set a base for the speed ( the NMI frame update speed)
 | `THROTTLE_VALUE` | Frames between movement steps | Slower motion |
 | `SPEED_VALUE` | Pixels moved per step | Faster motion |
 
-###  Conclusion
+###  Conclusion for this version
 
 This new version of the program is more flexible and efficient than the previous one.  
 By handling **controller input directly inside the main loop**, it decouples input reading from the NMI routine, improving responsiveness and making the overall structure cleaner and easier to maintain.  
 
-The introduction of **Frame Wait**, **Throttling**, and **Speed** control mechanisms allows fine-tuning of motion timing without altering the main logic.  
+The introduction of **Frame Wait**, **Throttling**, and **Speed** control mechanisms allows fine-tuning of background movement timing without altering the main logic.  
 Now the scroll speed can be adjusted simply by changing **two values** — `THROTTLE_VALUE` and `SPEED_VALUE` — giving full control over how fast or smooth the movement feels, while keeping perfect synchronization with the NES frame rate.
 
