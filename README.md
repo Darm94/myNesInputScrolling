@@ -46,7 +46,7 @@ The program performs these main tasks:
 
 ---
 
-## ⚙️ Adjustable Variables
+## Adjustable Variables
 
 | Variable | Description | Example Value |
 |-----------|--------------|----------------|
@@ -58,7 +58,7 @@ These variables can be changed directly in the source to control how the screen 
 
 ---
 
-## 🕒 Frame Wait
+## Frame Wait
 
 Before any movement happens, the code waits for the NMI interrupt to update the `FRAME` variable.  
 This ensures the logic runs **once per frame**, synchronized with the NES refresh rate (~60 Hz).
@@ -82,7 +82,7 @@ This mechanism allows you to slow down the scroll speed by waiting multiple fram
 SPEED determines how much X or Y changes each time a move is triggered.
 This controls the magnitude of each scroll step in pixels.
 
-### 🔁 Combined Effect
+### Combined Effect
 
 | Variable | Function | Higher Value → |
 |-----------|-----------|----------------|
