@@ -119,5 +119,5 @@ This new version of the program is more flexible and efficient than the previous
 By handling **controller input directly inside the main loop**, it decouples input reading from the NMI routine, improving responsiveness and making the overall structure cleaner and easier to maintain.  
 
 The introduction of **Frame Wait**, **Throttling**, and **Speed** control mechanisms allows fine-tuning of background movement timing without altering the main logic.  
-Now the scroll speed can be adjusted simply by changing **two values** — `THROTTLE_VALUE` and `SPEED_VALUE` — giving full control over how fast or smooth the movement feels, while keeping perfect synchronization with the NES frame rate.
+Now the scroll speed can be adjusted simply by changing **two values** — `THROTTLE_VALUE` and `SPEED_VALUE` — giving full control over how fast or smooth the movement feels, while keeping a good synchronization with the NES frame rate.
 
