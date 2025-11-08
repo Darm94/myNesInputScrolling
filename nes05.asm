@@ -75,9 +75,9 @@ WaitFrame:
 
 ; ------ throttle movemement: do a movement every THROTTLE value number of frames ------
     LDA THROTTLE
-    BEQ DoMove                ; se 0, è il frame in cui muovere
+    BEQ DoMove                ; if 0 can move
     DEC THROTTLE              ; otherwise decrease Throttle value
-    JMP no_move               ; jump to no_move label
+    JMP no_move               ; and jump to no_move label
 
 DoMove:
     LDA THROTTLE_VALUE                 ; the value that decide how many loop cicles wait
@@ -99,7 +99,7 @@ read_loop:
 
     LDA JOY1
     LSR A                     ; bit0 -> Carry
-    ROL BUTTONS                   ; Carry -> bit0 di $03, shift a sinistra
+    ROL BUTTONS                  
     BCC read_loop
     
 ; -------- Direction CHECK PART (just one for frame and following a priority) --------------------------------   
